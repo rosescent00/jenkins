@@ -1,5 +1,9 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'maven:3.9.2-eclipse-temurin-17'
+    }
+  }
 
   environment {
     DOCKER_IMAGE = "rosescent00/spring-app:latest"
@@ -18,15 +22,6 @@ pipeline {
             credentialsId: 'github-creds'
           ]]
         ])
-      }
-    }
-
-
-    stage('Install Maven') {
-      steps {
-        sh '''
-          image 'maven:3.9.2-eclipse-temurin-17'
-        '''
       }
     }
 
