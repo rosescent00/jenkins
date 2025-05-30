@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3.9.2-eclipse-temurin-17'
-    }
-  }
+  agent any
 
   environment {
     DOCKER_IMAGE = "rosescent00/spring-app:latest"
@@ -15,6 +11,14 @@ pipeline {
     stage('Clone') {
       steps {
         git credentialsId: 'github-creds', url: 'https://github.com/rosescent00/spring-app.git'
+      }
+    }
+
+    stage('Install Maven') {
+      steps {
+        sh '''
+          apt update && apt install -y maven
+        '''
       }
     }
 
