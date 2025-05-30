@@ -25,7 +25,7 @@ pipeline {
     stage('Install Maven') {
       steps {
         sh '''
-          apt update && apt install -y maven
+          image 'maven:3.9.2-eclipse-temurin-17'
         '''
       }
     }
