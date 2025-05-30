@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('Clone') {
       steps {
-        git credentialsId: 'jenkins-token', url: 'https://github.com/rosescent00/spring-app.git'
+        git credentialsId: 'jenkins-token', url: 'https://github.com/rosescent00/jenkins.git'
       }
     }
 
