@@ -10,9 +10,17 @@ pipeline {
   stages {
     stage('Clone') {
       steps {
-        git credentialsId: 'jenkins-token', url: 'https://github.com/rosescent00/jenkins.git'
+        checkout([
+          $class: 'GitSCM',
+          branches: [[name: '*/main']],
+          userRemoteConfigs: [[
+            url: 'https://github.com/rosescent00/jenkins.git',
+            credentialsId: 'github-creds'
+          ]]
+        ])
       }
     }
+
 
     stage('Install Maven') {
       steps {
