@@ -1,5 +1,3 @@
-# Jenkinsfile - Jenkins 자동 배포 파이프라인 (Maven 사용)
-# ----------------------------------------------------------
 pipeline {
   agent {
     docker {
@@ -8,7 +6,7 @@ pipeline {
   }
 
   environment {
-    DOCKER_IMAGE = "your-dockerhub-id/spring-app:latest"
+    DOCKER_IMAGE = "rosescent00/spring-app:latest"
     DOCKER_CRED = 'dockerhub-creds'
     KUBECONFIG_CRED = 'kubeconfig-creds'
   }
@@ -16,7 +14,7 @@ pipeline {
   stages {
     stage('Clone') {
       steps {
-        git credentialsId: 'github-creds', url: 'https://github.com/yourname/your-repo.git'
+        git credentialsId: 'github-creds', url: 'https://github.com/rosescent00/spring-app.git'
       }
     }
 
